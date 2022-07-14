@@ -1,0 +1,14 @@
+# Gets All Books
+query GET_ALL_BOOKS {
+    allBooks {
+        title
+        pages
+        rating {
+            star
+        }
+        author {
+            firstName
+            lastName
+        }
+    }
+}
