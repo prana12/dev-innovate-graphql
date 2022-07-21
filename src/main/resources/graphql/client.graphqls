@@ -1,0 +1,9 @@
+type Client {
+    id: ID!
+    firstName: String!
+    surName: String!
+    dateOfBirth: String!
+    emailAddress: String
+    addressLine1: String!
+    postcode: String!
+}

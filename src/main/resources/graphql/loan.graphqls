@@ -1,0 +1,6 @@
+type Loan {
+    loanNumber: String!
+    loanSuffix: String!
+    loanStatus: String!
+    #client: Client!
+}

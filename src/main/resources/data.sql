@@ -1,0 +1,1 @@
+insert into loan(id, loan_number, loan_suffix, loan_status) values (1, '5008665378', '05', 'Active');
