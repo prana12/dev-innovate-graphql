@@ -2,6 +2,7 @@ package dev.lab.demo.controller;
 
 import dev.lab.demo.model.Loan;
 import dev.lab.demo.repository.LoanRepository;
+import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
@@ -23,24 +24,17 @@ public class LoanController {
     }
 
     @QueryMapping
-    public Loan findLoan(String loanNumber, String loanSuffix) {
-        //return loanRepository.findById(id).get();
-        //return  loanRepository.findLoanByLoanRef(loanNumber, loanSuffix);
-
-        Loan loan = new Loan();
-        loan.setLoanNumber("123456");
-        loan.setLoanSuffix("00");
-        loan.setLoanStatus("TEST-Find-Query");
-        return loan;
+    public Loan findLoan(@Argument String loanNumber, @Argument String loanSuffix) {
+        return  loanRepository.findLoanByLoanRef(loanNumber, loanSuffix);
     }
 
     @MutationMapping
-    public Loan createLoan(String loanNumber, String loanSuffix, String loanStatus) {
+    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument String loanStatus) {
         Loan loan = new Loan();
-        loan.setLoanNumber("123456");
-        loan.setLoanSuffix("00");
-        loan.setLoanStatus("TEST-Mutation");
-        return loan;
+        loan.setLoanNumber(loanNumber);
+        loan.setLoanSuffix(loanSuffix);
+        loan.setLoanStatus(loanStatus);
+        return loanRepository.save(loan);
     }
 
 }

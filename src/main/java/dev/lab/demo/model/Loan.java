@@ -3,7 +3,6 @@ package dev.lab.demo.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "loan")
 public class Loan {
 
     @Id
@@ -15,12 +14,6 @@ public class Loan {
     private String loanStatus;
 
     public Loan() { }
-
-    /*public Loan(String loanNumber, String loanSuffix, String loanStatus) {
-        this.loanNumber = loanNumber;
-        this.loanSuffix = loanSuffix;
-        this.loanStatus = loanStatus;
-    }*/
 
     public Long getId() {
         return id;
