@@ -1,5 +1,6 @@
 package dev.lab.demo.controller;
 
+import dev.lab.demo.constant.LoanStatus;
 import dev.lab.demo.model.Loan;
 import dev.lab.demo.repository.LoanRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -29,7 +30,7 @@ public class LoanController {
     }
 
     @MutationMapping
-    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument String loanStatus) {
+    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument LoanStatus loanStatus) {
         Loan loan = new Loan();
         loan.setLoanNumber(loanNumber);
         loan.setLoanSuffix(loanSuffix);

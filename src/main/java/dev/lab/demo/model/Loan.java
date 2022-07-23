@@ -1,17 +1,20 @@
 package dev.lab.demo.model;
 
+import dev.lab.demo.constant.LoanStatus;
+
 import javax.persistence.*;
 
 @Entity
 public class Loan {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String loanNumber;
     private String loanSuffix;
-    private String loanStatus;
+    @Enumerated(EnumType.STRING)
+    private LoanStatus loanStatus;
 
     public Loan() { }
 
@@ -35,11 +38,11 @@ public class Loan {
         this.loanSuffix = loanSuffix;
     }
 
-    public String getLoanStatus() {
+    public LoanStatus getLoanStatus() {
         return loanStatus;
     }
 
-    public void setLoanStatus(String loanStatus) {
+    public void setLoanStatus(LoanStatus loanStatus) {
         this.loanStatus = loanStatus;
     }
 }

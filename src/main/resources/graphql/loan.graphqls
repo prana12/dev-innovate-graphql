@@ -1,6 +1,14 @@
 type Loan {
+    id: ID!
     loanNumber: String!
     loanSuffix: String!
-    loanStatus: String!
+    loanStatus: LoanStatus!
     #client: Client!
+}
+
+enum LoanStatus {
+    ACTIVE
+    CANCELLED
+    REJECTED
+    CLOSED
 }

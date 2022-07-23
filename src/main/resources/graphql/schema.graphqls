@@ -30,5 +30,5 @@ type Query {
 }
 
 type Mutation {
-    createLoan(loanNumber: String!, loanSuffix: String!, loanStatus: String!): Loan
+    createLoan(loanNumber: String!, loanSuffix: String!, loanStatus: LoanStatus!): Loan
 }
