@@ -1,7 +1,6 @@
 package dev.lab.demo.repository;
 
 import dev.lab.demo.model.Client;
-import dev.lab.demo.model.Loan;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

@@ -1,29 +1,5 @@
-type Book {
-    id: ID!
-    title: String
-    pages: Int
-    rating: Rating
-    author: Author
-}
-
-type Rating {
-    rating: String
-    star: String
-}
-
-type Author {
-    id: ID!
-    firstName: String
-    lastName: String
-    books: [Book]
-}
-
 # Root
 type Query {
-    allBooks: [Book]
-    findOne(id: ID!): Book
-    allAuthors: [Author]
-
     allLoans: [Loan]!
     findLoan(loanNumber: String!, loanSuffix: String!): Loan
 
