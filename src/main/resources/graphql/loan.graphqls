@@ -3,7 +3,7 @@ type Loan {
     loanNumber: String!
     loanSuffix: String!
     loanStatus: LoanStatus!
-    #client: Client!
+    client: Client!
 }
 
 enum LoanStatus {

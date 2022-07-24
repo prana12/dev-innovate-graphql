@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 public class Loan {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -15,6 +14,10 @@ public class Loan {
     private String loanSuffix;
     @Enumerated(EnumType.STRING)
     private LoanStatus loanStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "client_id", nullable = false, updatable = false)
+    private Client client;
 
     public Loan() { }
 
@@ -44,5 +47,13 @@ public class Loan {
 
     public void setLoanStatus(LoanStatus loanStatus) {
         this.loanStatus = loanStatus;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

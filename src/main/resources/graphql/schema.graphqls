@@ -26,7 +26,8 @@ type Query {
 
     allLoans: [Loan]!
     findLoan(loanNumber: String!, loanSuffix: String!): Loan
-    #allClients: [Client]!
+
+    allClients: [Client]!
 }
 
 type Mutation {
