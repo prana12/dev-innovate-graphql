@@ -29,6 +29,7 @@ public class LoanController {
         return loanService.allLoans();
     }
 
+    //may work without this for Resolver
     @SchemaMapping(typeName="Loan", field="client")
     public Client getClient(Loan loan) {
         return clientService.getClient(loan);
