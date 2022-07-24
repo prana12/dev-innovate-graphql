@@ -40,11 +40,14 @@ public class LoanController {
     }
 
     @MutationMapping
-    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument LoanStatus loanStatus) {
+    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument LoanStatus loanStatus, @Argument Long clientId) {
+        Client client = clientRepository.getById(clientId);
+
         Loan loan = new Loan();
         loan.setLoanNumber(loanNumber);
         loan.setLoanSuffix(loanSuffix);
         loan.setLoanStatus(loanStatus);
+        loan.setClient(client);
         return loanRepository.save(loan);
     }
 
