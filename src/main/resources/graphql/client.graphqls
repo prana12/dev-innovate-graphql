@@ -1,11 +1,11 @@
-#scalar Date
+scalar Date
 
 type Client {
     id: ID!
     firstName: String!
     lastName: String!
-    dateOfBirth: String!
-    #dateOfBirth: Date!
+    #dateOfBirth: String!
+    dateOfBirth: Date!
     emailAddress: String
     addressLine1: String!
     postcode: String!
