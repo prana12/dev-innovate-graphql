@@ -12,3 +12,10 @@ enum LoanStatus {
     REJECTED
     CLOSED
 }
+
+input LoanInput {
+    loanNumber: String!
+    loanSuffix: String!
+    loanStatus: LoanStatus!
+    clientId: ID!
+}

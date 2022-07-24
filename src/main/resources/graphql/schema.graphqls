@@ -8,9 +8,9 @@ type Query {
 }
 
 type Mutation {
-    createLoan(loanNumber: String!, loanSuffix: String!, loanStatus: LoanStatus!, clientId: ID!): Loan
+    createLoan(loanInput: LoanInput!): Loan
     deleteLoan(loanNumber: String!, loanSuffix: String!): Loan
 
-    createClient(firstName: String!, lastName: String!, dateOfBirth: String!, emailAddress: String!, addressLine1: String, postcode: String): Client
+    createClient(clientInput: ClientInput!): Client
     deleteClient(emailAddress: String!): Client
 }

@@ -1,6 +1,7 @@
 package dev.lab.demo.controller;
 
 import dev.lab.demo.model.Client;
+import dev.lab.demo.model.ClientInput;
 import dev.lab.demo.repository.ClientRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
@@ -29,14 +30,14 @@ public class ClientController {
     }
 
     @MutationMapping
-    public Client createClient(@Argument String firstName, @Argument String lastName, @Argument String emailAddress, @Argument String dateOfBirth, @Argument String addressLine1, @Argument String postcode) {
+    public Client createClient(@Argument ClientInput clientInput) {
         Client client = new Client();
-        client.setFirstName(firstName);
-        client.setLastName(lastName);
-        client.setEmailAddress(emailAddress);
-        client.setDateOfBirth(LocalDate.parse(dateOfBirth));
-        client.setAddressLine1(addressLine1);
-        client.setPostcode(postcode);
+        client.setFirstName(clientInput.getFirstName());
+        client.setLastName(clientInput.getLastName());
+        client.setEmailAddress(clientInput.getEmailAddress());
+        client.setDateOfBirth(LocalDate.parse(clientInput.getDateOfBirth()));
+        client.setAddressLine1(clientInput.getAddressLine1());
+        client.setPostcode(clientInput.getPostcode());
         clientRepository.save(client);
 
         return client;

@@ -10,3 +10,12 @@ type Client {
     addressLine1: String
     postcode: String
 }
+
+input ClientInput {
+    firstName: String!
+    lastName: String!
+    dateOfBirth: String!
+    emailAddress: String!
+    addressLine1: String
+    postcode: String
+}

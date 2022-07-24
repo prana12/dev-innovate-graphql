@@ -3,6 +3,7 @@ package dev.lab.demo.controller;
 import dev.lab.demo.constant.LoanStatus;
 import dev.lab.demo.model.Client;
 import dev.lab.demo.model.Loan;
+import dev.lab.demo.model.LoanInput;
 import dev.lab.demo.repository.ClientRepository;
 import dev.lab.demo.repository.LoanRepository;
 import org.springframework.graphql.data.method.annotation.Argument;
@@ -40,13 +41,13 @@ public class LoanController {
     }
 
     @MutationMapping
-    public Loan createLoan(@Argument String loanNumber, @Argument String loanSuffix, @Argument LoanStatus loanStatus, @Argument Long clientId) {
-        Client client = clientRepository.getById(clientId);
+    public Loan createLoan(@Argument LoanInput loanInput) {
+        Client client = clientRepository.getById(loanInput.getClientId());
 
         Loan loan = new Loan();
-        loan.setLoanNumber(loanNumber);
-        loan.setLoanSuffix(loanSuffix);
-        loan.setLoanStatus(loanStatus);
+        loan.setLoanNumber(loanInput.getLoanNumber());
+        loan.setLoanSuffix(loanInput.getLoanSuffix());
+        loan.setLoanStatus(loanInput.getLoanStatus());
         loan.setClient(client);
         return loanRepository.save(loan);
     }
