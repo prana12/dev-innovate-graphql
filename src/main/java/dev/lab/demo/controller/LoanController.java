@@ -36,7 +36,7 @@ public class LoanController {
 
     @QueryMapping
     public Loan findLoan(@Argument String loanNumber, @Argument String loanSuffix) {
-        return  loanRepository.findLoanByLoanRef(loanNumber, loanSuffix);
+        return loanRepository.findLoanByLoanRef(loanNumber, loanSuffix);
     }
 
     @MutationMapping
@@ -49,6 +49,14 @@ public class LoanController {
         loan.setLoanStatus(loanStatus);
         loan.setClient(client);
         return loanRepository.save(loan);
+    }
+
+    @MutationMapping
+    public Loan deleteLoan(@Argument String loanNumber, @Argument String loanSuffix) {
+        Loan loan = loanRepository.findLoanByLoanRef(loanNumber, loanSuffix);
+        loanRepository.delete(loan);
+
+        return loan;
     }
 
 }

@@ -28,8 +28,13 @@ type Query {
     findLoan(loanNumber: String!, loanSuffix: String!): Loan
 
     allClients: [Client]!
+    findClient(emailAddress: String!): Client
 }
 
 type Mutation {
     createLoan(loanNumber: String!, loanSuffix: String!, loanStatus: LoanStatus!, clientId: ID!): Loan
+    deleteLoan(loanNumber: String!, loanSuffix: String!): Loan
+
+    createClient(firstName: String!, lastName: String!, dateOfBirth: String!, emailAddress: String!, addressLine1: String, postcode: String): Client
+    deleteClient(emailAddress: String!): Client
 }
