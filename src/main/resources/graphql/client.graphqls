@@ -6,7 +6,7 @@ type Client {
     lastName: String!
     dateOfBirth: String!
     #dateOfBirth: Date!
-    emailAddress: String
-    addressLine1: String!
-    postcode: String!
+    emailAddress: String!
+    addressLine1: String
+    postcode: String
 }

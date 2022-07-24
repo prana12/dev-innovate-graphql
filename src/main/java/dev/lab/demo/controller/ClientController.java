@@ -7,6 +7,7 @@ import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.stereotype.Controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -25,6 +26,20 @@ public class ClientController {
     @QueryMapping
     public Client findClient(@Argument String emailAddress) {
         return clientRepository.findClientByEmail(emailAddress);
+    }
+
+    @MutationMapping
+    public Client createClient(@Argument String firstName, @Argument String lastName, @Argument String emailAddress, @Argument String dateOfBirth, @Argument String addressLine1, @Argument String postcode) {
+        Client client = new Client();
+        client.setFirstName(firstName);
+        client.setLastName(lastName);
+        client.setEmailAddress(emailAddress);
+        client.setDateOfBirth(LocalDate.parse(dateOfBirth));
+        client.setAddressLine1(addressLine1);
+        client.setPostcode(postcode);
+        clientRepository.save(client);
+
+        return client;
     }
 
     @MutationMapping
