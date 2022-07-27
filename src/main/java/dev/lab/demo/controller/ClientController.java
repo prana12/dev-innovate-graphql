@@ -3,6 +3,7 @@ package dev.lab.demo.controller;
 import dev.lab.demo.model.Client;
 import dev.lab.demo.model.ClientInput;
 import dev.lab.demo.service.ClientService;
+import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -11,12 +12,9 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class ClientController {
     private ClientService clientService;
-
-    public ClientController(ClientService clientService) {
-        this.clientService = clientService;
-    }
 
     @QueryMapping
     public List<Client> allClients() {

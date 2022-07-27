@@ -5,20 +5,17 @@ import dev.lab.demo.model.Loan;
 import dev.lab.demo.model.LoanInput;
 import dev.lab.demo.repository.ClientRepository;
 import dev.lab.demo.repository.LoanRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class LoanService {
 
     private LoanRepository loanRepository;
     private ClientRepository clientRepository;
-
-    public LoanService(LoanRepository loanRepository, ClientRepository clientRepository) {
-        this.loanRepository = loanRepository;
-        this.clientRepository = clientRepository;
-    }
 
     public List<Loan> allLoans() {
         return loanRepository.findAll();
@@ -30,12 +27,12 @@ public class LoanService {
 
     public Loan createLoan(LoanInput loanInput) {
         Client client = clientRepository.getById(loanInput.getClientId());
-
-        Loan loan = new Loan();
-        loan.setLoanNumber(loanInput.getLoanNumber());
-        loan.setLoanSuffix(loanInput.getLoanSuffix());
-        loan.setLoanStatus(loanInput.getLoanStatus());
-        loan.setClient(client);
+        Loan loan = Loan.builder()
+                .loanNumber(loanInput.getLoanNumber())
+                .loanSuffix(loanInput.getLoanSuffix())
+                .loanStatus(loanInput.getLoanStatus())
+                .client(client)
+                .build();
         return loanRepository.save(loan);
     }
 

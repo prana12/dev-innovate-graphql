@@ -5,21 +5,18 @@ import dev.lab.demo.model.ClientInput;
 import dev.lab.demo.model.Loan;
 import dev.lab.demo.repository.ClientRepository;
 import dev.lab.demo.repository.LoanRepository;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
 @Service
+@AllArgsConstructor
 public class ClientService {
 
     private LoanRepository loanRepository;
     private ClientRepository clientRepository;
-
-    public ClientService(LoanRepository loanRepository, ClientRepository clientRepository) {
-        this.loanRepository = loanRepository;
-        this.clientRepository = clientRepository;
-    }
 
     public List<Client> allClients() {
         return clientRepository.findAll();
@@ -30,13 +27,14 @@ public class ClientService {
     }
 
     public Client createClient(ClientInput clientInput) {
-        Client client = new Client();
-        client.setFirstName(clientInput.getFirstName());
-        client.setLastName(clientInput.getLastName());
-        client.setEmailAddress(clientInput.getEmailAddress());
-        client.setDateOfBirth(LocalDate.parse(clientInput.getDateOfBirth()));
-        client.setAddressLine1(clientInput.getAddressLine1());
-        client.setPostcode(clientInput.getPostcode());
+        Client client = Client.builder()
+                .firstName(clientInput.getFirstName())
+                .lastName(clientInput.getLastName())
+                .emailAddress(clientInput.getEmailAddress())
+                .dateOfBirth(LocalDate.parse(clientInput.getDateOfBirth()))
+                .addressLine1(clientInput.getAddressLine1())
+                .postcode(clientInput.getPostcode())
+                .build();
         clientRepository.save(client);
 
         return client;

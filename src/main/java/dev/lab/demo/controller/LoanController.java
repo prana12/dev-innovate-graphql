@@ -5,6 +5,7 @@ import dev.lab.demo.model.Loan;
 import dev.lab.demo.model.LoanInput;
 import dev.lab.demo.service.ClientService;
 import dev.lab.demo.service.LoanService;
+import lombok.AllArgsConstructor;
 import org.springframework.graphql.data.method.annotation.Argument;
 import org.springframework.graphql.data.method.annotation.MutationMapping;
 import org.springframework.graphql.data.method.annotation.QueryMapping;
@@ -14,22 +15,17 @@ import org.springframework.stereotype.Controller;
 import java.util.List;
 
 @Controller
+@AllArgsConstructor
 public class LoanController {
-
     private LoanService loanService;
     private ClientService clientService;
-
-    public LoanController(LoanService loanService, ClientService clientService) {
-        this.loanService = loanService;
-        this.clientService = clientService;
-    }
 
     @QueryMapping
     public List<Loan> allLoans() {
         return loanService.allLoans();
     }
 
-    //may work without this for Resolver
+    //may work without this for Resolver - implements GraphQLResolver<Loan>
     @SchemaMapping(typeName="Loan", field="client")
     public Client getClient(Loan loan) {
         return clientService.getClient(loan);
